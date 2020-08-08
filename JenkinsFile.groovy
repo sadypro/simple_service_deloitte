@@ -1,47 +1,12 @@
 #!groovy
-/* AUTHOR : SAAD UDDIN(saad.uddin@soprateria.com) SOPRA STERIA CLOUD COE 
- * This is the standard jenkinsfile to build and test monolith application 
+/* AUTHOR : SAAD UDDIN
+ * This is the standard jenkinsfile
  */
 import groovy.lang.Binding
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
-
-//Function to collect change logs and send to Jira
-
-@NonCPS
-def sendChangeLogs(buildstat) {
-   def commitMessages = ""
-   def formatter = new SimpleDateFormat('yyyy-MM-dd HH:mm')
-   def changeLogSets = currentBuild.changeSets
-   for (int i = 0; i < changeLogSets.size(); i++) {
-        def entries = changeLogSets[i].items
-        for (int j = 0; j < entries.length; j++) {
-            def entry = entries[j]
-            commitMessages = commitMessages + "* Last Commited by ${entry.author}  \n \n * Commit Message ${formatter.format(new Date(entry.timestamp))}: *${entry.msg}* \n * Commit id : [${entry.commitId}|${env.commit_id_url}] " 
-        }
-    }
-  jiraAddComment comment: "BUILD is ${buildstat} for  [${env.JOB_BASE_NAME}${env.BUILD_DISPLAY_NAME}|${BUILD_URL}] : \n ${commitMessages}", idOrKey: "${env.BR}", site: 'jira'
-    
-}
-//Function to send notifcation to teams
-
-def notifyteams(status,colour) {
-office365ConnectorSend color: "$colour", message: """
-
-<h2 style="text-align: left;"><strong>JIRA ISSUE</strong> : <span style="color: #000000; background-color: #ffffff;">${env.BR}</span></h2>
-<h2 style="text-align: left;"><strong> Build Number</strong> : <span style="color: #000000; background-color: #ffffff;">${env.BUILD_NUMBER}</span></h2>
-<h2 style="text-align: left;"><strong>Status</strong> : <span style="background-color: #ffffff; color: #$colour;"><strong>$status </strong></span></h2>
-<h2 style="text-align: left;"><span style="text-decoration: underline;"><strong>Reports</strong></span> :&nbsp;</h2>
-<ul>
-<li><a title="Sonar Scan" href="https://www.sterialiquiditysuite.ml/sonarqube/dashboard?id=${env.BR}" target="_blank" rel="noopener noreferrer" data-ignore-semantic-link="">Sonar Scan</a></li>
-<li><a title="Junit Test" href="${env.JOB_URL}Junit_20Report" target="_blank" rel="noopener">Junit Test</a></li>
-<li><a title="Integration Test" href="${env.JOB_URL}Integration_20Test_20Report">Integration Test</a></li>
-</ul> 
-""", status: "$status", webhookUrl: 'https://outlook.office.com/webhook/765b63a8-d4e7-4e92-8602-b9af283b76a8@8b87af7d-8647-4dc7-8df4-5f69a2011bb5/JenkinsCI/1c4d77f1bb3d425c876b2ed45474a895/43953621-0da6-4ac5-9ed8-d7ac165440ca'
-           }
 
 // pipeline body goes here
 
@@ -62,7 +27,7 @@ environment {
   
 agent {      
     kubernetes {
-      label 'jenkins-slave-dzb'
+      label 'jenkins-slave'
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
@@ -113,8 +78,6 @@ stages {
       steps {
         container('golang') {
           sh """
-            ln -s `pwd` /go/src/sample-app
-            cd /go/src/sample-app
             go test
           """
         }

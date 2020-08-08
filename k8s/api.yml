@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: simpleservice
-          image: saadgen/??
+          image: saadgen/deloitte_go_api
           resources:
             requests:
               memory: "100Mi"
