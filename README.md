@@ -41,7 +41,7 @@
 - 2. Populate Credentials --> gcloud container clusters get-credentials jenkins-cd
 - 3. cd k8s/ and run kubectl apply -f *.yml
 
-### Optional if Jenkins dynamic slaves approach is used for CI/CD 
+#### Optional if Jenkins CI/CD  dynamic slaves is require 
 - 1. Install Helm 
 		wget https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz
 		tar zxfv helm-v2.14.1-linux-amd64.tar.gz
