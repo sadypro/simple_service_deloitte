@@ -64,21 +64,21 @@
 
 #### Optional if Jenkins CI/CD  dynamic slaves is require 
 - 1. Install Helm 
-		wget https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz
-		tar zxfv helm-v2.14.1-linux-amd64.tar.gz
-		cp linux-amd64/helm .
+	-	wget https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz
+	-	tar zxfv helm-v2.14.1-linux-amd64.tar.gz
+	-	cp linux-amd64/helm .
 		
 - 2. Add yourself as a cluster administrator in the cluster's RBAC so that you can give Jenkins permissions in the cluster:
-		kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$(gcloud config get-value account)
+	-	kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$(gcloud config get-value account)
 		
 - 3. Grant Tiller, the server side of Helm, the cluster-admin role in your cluster:
 
-		kubectl create serviceaccount tiller --namespace kube-system
-		kubectl create clusterrolebinding tiller-admin-binding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+	-	kubectl create serviceaccount tiller --namespace kube-system
+	-	kubectl create clusterrolebinding tiller-admin-binding --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
 		
 - 4. Use the Helm CLI to deploy the Jenkins
 
-		./helm install -n cd stable/jenkins -f jenkins/values.yaml --version 1.2.2 --wait		
+	-	./helm install -n cd stable/jenkins -f jenkins/values.yaml --version 1.2.2 --wait		
 		
 - 5. Configure the Jenkins service account to be able to deploy to the cluster and connect to jenkins console
 
