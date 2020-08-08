@@ -1,22 +1,23 @@
 # Simple_service_deloitte
 
-##### Assignment : 
-
-##### Build an API that will use a string as input and does a find and replace for certain words and outputs the result. For example: replace Google for Google©. 
-##### Example input: 	“We really like the new security features of Google Cloud”. 
-##### Expected output: 	“We really like the new security features of Google Cloud©”.
-##### The words that need to be replaced are provided below the description of this assignment.
+### Assignment :
+-	Build an API that will use a string as input and does a find and replace for certain words and outputs the result. For example: replace Google for Google©. 
+-	Example input: 	“We really like the new security features of Google Cloud”. 
+-	Expected output: 	“We really like the new security features of Google Cloud©”.
+-	The words that need to be replaced are provided below the description of this assignment.
 
 
 ## Methods 
-- 1. Using API GateWay + Lambda function ( Serverless Approach ) - Recommended 
-- 2. Deploy using Docker-compose 
-- 3. Create Kuberntes Cluster and deploy 
+
+### 1. Using API GateWay + Lambda function ( Serverless Approach ) - Recommended 
+### 2. Deploy using Docker-compose 
+### 3. Create Kuberntes Cluster and deploy 
 
 
 ### Method 1 : Using API GateWay + Lambda function ( Serverless Approach )
 
-#### This is the preferred approach to deploy simple api 
+#### This is the preferred approach to deploy simple API 
+
 - 1. Install the serverless CLI:   npm install -g serverless
 - 2. cd lamda_function 
 - 3. Run : sls deploy --verbose 
@@ -40,7 +41,7 @@
 - 2. Populate Credentials --> gcloud container clusters get-credentials jenkins-cd
 - 3. cd k8s/ and run kubectl apply -f *.yml
 
-##### Optional if Jenkins dynamic slaves approach is used for CI/CD 
+### Optional if Jenkins dynamic slaves approach is used for CI/CD 
 - 1. Install Helm 
 		wget https://storage.googleapis.com/kubernetes-helm/helm-v2.14.1-linux-amd64.tar.gz
 		tar zxfv helm-v2.14.1-linux-amd64.tar.gz
