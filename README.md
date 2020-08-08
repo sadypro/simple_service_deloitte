@@ -5,6 +5,13 @@
 -	Example input: 	“We really like the new security features of Google Cloud”. 
 -	Expected output: 	“We really like the new security features of Google Cloud©”.
 -	The words that need to be replaced are provided below the description of this assignment.
+	List of word that need to be replaced:
+	•	Oracle -> Oracle©
+	•	Google -> Google©
+	•	Microsoft -> Microsoft©
+	•	Amazon -> Amazon©
+	•	Deloitte -> Deloitte©
+
 
 
 ## Methods 
