@@ -27,7 +27,7 @@
 #### This is the preferred approach to deploy simple API 
 
 - 1. Install the serverless CLI:   npm install -g serverless
-- 2. cd lamda_function 
+- 2. cd lamda_function /
 - 3. Run : sls deploy --verbose 
 
 
