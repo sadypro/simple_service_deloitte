@@ -39,7 +39,10 @@
 
 #### This is the full ops approach to deploy simple api in a docker environemnt using docker-compose
 - 1. Install docker and docker-compose if not present 
-- 2. Run : docker-compose up -d 
+- 2. Run : docker-compose up -d   and your API will start at port 8080
+- 3. Get machine ip then trigger API using 
+      curl -X POST  http://hostname:8080/replace -d 'We really like the new security features of Google Cloud'
+      curl -X GET http://hostname:8080/live
 
 ### Method 3 : Create Kuberntes Cluster and deploy 
 
@@ -52,6 +55,12 @@
 		
 - 2. Populate Credentials --> gcloud container clusters get-credentials jenkins-cd
 - 3. cd k8s/ and run kubectl apply -f *.yml
+- 4. Get service endpoint using command :kubectl get service and get ip 
+    Hit API using
+      curl -X GET http://hostname:8080/live
+      curl -X POST http://hostname:8080/replace -d 'Oracle'
+
+
 
 #### Optional if Jenkins CI/CD  dynamic slaves is require 
 - 1. Install Helm 
