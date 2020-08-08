@@ -13,7 +13,7 @@
 	•	Amazon -> Amazon©
 	•	Deloitte -> Deloitte©
 
-### A Go API is created with GET and POST  
+### Solution : A Go API is created with GET and POST  
 -	1. GET method - Displays welcome message
 -	2. POST method - Accepts plain text in body and Respond with updated String  ( needs api key for authentication )
 -		Example : curl -X POST -H 'x-api-key: xxxxxxxxxxxxxxxx' https://api_url -d 'We really like the new security features of Google Cloud'
